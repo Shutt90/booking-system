@@ -20,7 +20,7 @@ func checkError(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	fs := http.FileServer(http.Dir("./dist/"))
+	fs := http.FileServer(http.Dir("./frontend/"))
 	http.Handle("/", fs)
 	http.HandleFunc("/book", handleDate)
 	fmt.Printf("Starting server at port 8080\n")
