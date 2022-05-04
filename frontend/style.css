@@ -1,3 +1,38 @@
-.title {
-    color: red;
+.calender {
+    display: flex;
+    flex-direction: column;
+}
+
+.arrow-left {
+    display: flex;
+    justify-content: center;
+}
+
+.arrow-right {
+    display: flex;
+    justify-content: center;
+}
+
+.calender-top {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.calender-top p {
+    text-align: center;
+}
+
+.calender-day {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: black;
+    color: white;
+}
+
+.calender-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
 }
