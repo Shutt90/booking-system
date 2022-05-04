@@ -8,7 +8,15 @@
     <title>Hello</title>
 </head>
 <body>
-    <div class="calender">
+    <form method="POST" action="/book">
+        <input type="text" placeholder="Name..." id="form-name" name="form-name">
+        <input type="text" placeholder="Email..." id="form-email" name="form-email">
+        <input type="text" placeholder="Arrival date..." id="form-arrival" name="form-arrival">
+        <input type="text" placeholder="Departure date..." id="form-depart" name="form-depart">
+        <input type="submit" value="Submit">
+    </form>
+
+    <div class="calender" style="display: none;">
         <div class="calender-top">
             <div class="arrow-left">
                 <svg height="20" width="20"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
