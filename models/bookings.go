@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/jinzhu/gorm"
+	"booking-system/config"
 )
 
 var db *gorm.DB
@@ -16,6 +17,12 @@ type Booking struct {
 	Email     string
 	Arrival   string
 	Departure string
+}
+
+func init() {
+	config.Connect()
+	db = config.GetDB()
+	db.AutoMigrate(&Booking{})
 }
 
 func Bookings() {
