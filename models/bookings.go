@@ -4,12 +4,12 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/jinzhu/gorm"
 	"booking-system/config"
+
+	"github.com/jinzhu/gorm"
 )
 
 var db *gorm.DB
-
 
 type Booking struct {
 	gorm.Model
@@ -35,7 +35,13 @@ func Bookings() {
 
 }
 
+func GetAllBookings() []Booking {
+	var Booking []Booking
+	db.Find(&Booking)
+	return Booking
+}
+
 func CreateBooking(w http.ResponseWriter, r *http.Request) {
 	db.Create(&Booking{})
-
 }
+
