@@ -1,8 +1,6 @@
 package Bookings
 
 import (
-	"net/http"
-
 	"booking-system/config"
 
 	"gorm.io/gorm"
@@ -12,15 +10,17 @@ var db *gorm.DB
 
 type Booking struct {
 	gorm.Model
-	Name      string
-	Email     string
-	Arrival   string
-	Departure string
+	Name      string `json:"name"`
+	Email     string `json:"email"`
+	Arrival   string `json:"arrival"`
+	Departure string `json:"departure"`
 }
 
 func init() {
 	config.Connect()
 	db = config.GetDB()
+	db.AutoMigrate(&Booking{})
+
 }
 
 func GetAllBookings() []Booking {
@@ -29,6 +29,7 @@ func GetAllBookings() []Booking {
 	return Booking
 }
 
-func CreateBooking(w http.ResponseWriter, r *http.Request) {
-	db.Create(&Booking{})
+func (b *Booking) CreateBooking() *Booking {
+	db.Create(&b)
+	return b
 }
