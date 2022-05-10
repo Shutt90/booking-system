@@ -1,12 +1,11 @@
 package Bookings
 
 import (
-	"log"
 	"net/http"
 
 	"booking-system/config"
 
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 var db *gorm.DB
@@ -22,17 +21,6 @@ type Booking struct {
 func init() {
 	config.Connect()
 	db = config.GetDB()
-	db.AutoMigrate(&Booking{})
-}
-
-func Bookings() {
-	db, err := gorm.Open("mysql", "root:@/booking?charset=utf8&parseTime=True&loc=Local")
-	if err != nil {
-		log.Fatal("Issue with db connect")
-	}
-	defer db.Close()
-	db.AutoMigrate(&Booking{})
-
 }
 
 func GetAllBookings() []Booking {
@@ -44,4 +32,3 @@ func GetAllBookings() []Booking {
 func CreateBooking(w http.ResponseWriter, r *http.Request) {
 	db.Create(&Booking{})
 }
-
