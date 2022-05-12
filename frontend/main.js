@@ -14,31 +14,20 @@ let activeForm = qs('.active')
 
 const options = [qs('#form-arrival'), qs('#form-depart')]
 
+let calenderOpen = false;
+
 function calenderState() {
 
-    // options.forEach((node, index) => {
-        
-    // })
-
-    this.addEventListener('click', function() {
-        this.classList.toggle('active');
-    })
-
-    if(this.classList.contains('active') && calender.style.display === 'flex') {
+    if(calenderOpen && this.classList.contains('active')) {
         this.classList.remove('active')
-    } else if(!this.classList.contains('active')) {
-        this.classList.add('active')
+        calender.style.display = 'none';
+        calenderOpen = false;
+    } else if(!calenderOpen && !this.classList.contains('active')) {
+        this.classList.add('active');
+        calender.style.display = 'flex';
+        calenderOpen = true;
+
     }
-
-    const activeFormNew = qs('.active')
-    console.log(activeFormNew)
-
-    if(activeFormNew.classList.contains('active')) {
-        calender.style.display = 'flex'
-    } else if(!activeFormNew === null){
-        calender.style.display = 'none'
-    }
-
 }
 
 function getValue(e) {
@@ -51,7 +40,7 @@ function getValue(e) {
 }
 
 depart.addEventListener('click', calenderState, this)
-arrival.addEventListener('click', calenderState)
+arrival.addEventListener('click', calenderState, this)
 
 dateChildren.forEach(date => {
     date.addEventListener('click', getValue)
