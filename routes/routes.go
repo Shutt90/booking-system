@@ -2,12 +2,14 @@ package routes
 
 import (
 	controllers "booking-system/controllers"
+	"net/http"
 
 	"github.com/gorilla/mux"
 )
 
 var RegisterBookingsRoutes = func(router *mux.Router) {
-	router.HandleFunc("/booking/", controllers.GetBookings).Methods("GET")
-	router.HandleFunc("/booking/", controllers.CreateBooking).Methods("POST")
+	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./frontend/")))
+	router.HandleFunc("/bookings/", controllers.GetBookings).Methods("GET")
+	router.HandleFunc("/book/", controllers.CreateBooking).Methods("POST")
 
 }
